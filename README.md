@@ -73,4 +73,4 @@ Pull requests, feature suggestions, and contributions are always welcome. Reach 
 
 ## 🧠 Try It Live
 
-> Coming soon: [https://weeks-of-life.vercel.app](https://weeks-of-life.vercel.app)
+[https://lifevisualizer.netlify.app/](https://lifevisualizer.netlify.app/)
