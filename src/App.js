@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Life from "./components/Life"
 
 function App() {
