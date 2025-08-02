@@ -303,7 +303,7 @@ export default function WeeksOfLife() {
       margin-bottom: 20px;
     `;
     header.innerHTML = `
-      <h1 style="font-size: 28px; font-weight: bold; margin: 0 0 6px 0; color: ${isDarkMode ? '#ffffff' : '#1f2937'};">My Life in Weeks</h1>
+      <h1 style="font-size: 28px; font-weight: bold; margin: 0 0 6px 0; color: ${isDarkMode ? '#ffffff' : '#1f2937'};">Life Visualizer</h1>
       <p style="font-size: 14px; margin: 0; color: ${isDarkMode ? '#d1d5db' : '#6b7280'};">${stats.age} years old • ${stats.percentageLived}% lived • ${getFormattedNumber(stats.weeksRemaining)} weeks remaining</p>
     `;
 
@@ -312,7 +312,7 @@ export default function WeeksOfLife() {
     mainContent.style.cssText = `
       display: flex;
       gap: 20px;
-      height: calc(100% - 60px);
+      height: calc(100% - 90px);
       align-items: stretch;
     `;
 
@@ -447,8 +447,29 @@ export default function WeeksOfLife() {
     // Assemble layout
     mainContent.appendChild(leftSide);
     mainContent.appendChild(rightSide);
+    
+    // Footer with GitHub info
+    const footer = document.createElement('div');
+    footer.style.cssText = `
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 11px;
+      color: ${isDarkMode ? '#9ca3af' : '#6b7280'};
+    `;
+    footer.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <span>⭐ github.com/Meykaye/Life-Visualizer</span>
+        <span>•</span>
+        <span>Built with ❤️ by @Meykaye</span>
+      </div>
+    `;
+    
     container.appendChild(header);
     container.appendChild(mainContent);
+    container.appendChild(footer);
 
     return container;
   };
@@ -892,6 +913,54 @@ export default function WeeksOfLife() {
             }`}>
               <p>Each square represents one week of your projected lifespan</p>
               <p className="mt-2">This moment will never come again - how will you honor it? 🌟</p>
+            </div>
+
+            {/* GitHub Star Section */}
+            <div className={`mt-8 py-6 border-t ${
+              isDarkMode ? 'border-gray-700' : 'border-gray-200'
+            }`}>
+              <div className="text-center">
+                <p className={`text-sm mb-4 ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  Found this helpful? Give it a star! ⭐
+                </p>
+                <a
+                  href="https://github.com/Meykaye/Life-Visualizer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 hover:scale-105 ${
+                    isDarkMode 
+                      ? 'bg-gray-800 border-gray-600 text-gray-200 hover:bg-gray-700 hover:border-gray-500' 
+                      : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-medium">Star on GitHub</span>
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    isDarkMode ? 'bg-yellow-900 text-yellow-200' : 'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    Free & Open Source
+                  </span>
+                </a>
+                <p className={`text-xs mt-3 ${
+                  isDarkMode ? 'text-gray-500' : 'text-gray-500'
+                }`}>
+                  Built with ❤️ by{' '}
+                  <a 
+                    href="https://github.com/Meykaye" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={`hover:underline ${
+                      isDarkMode ? 'text-indigo-400' : 'text-indigo-600'
+                    }`}
+                  >
+                    @Meykaye
+                  </a>
+                </p>
+              </div>
             </div>
           </>
         )}
