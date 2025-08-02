@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# 📅 Weeks of Life
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Visualize your entire life — one week at a time. This interactive React app helps you reflect on time, understand your journey, and discover surprising facts about how you've spent your life so far.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- 🧠 **Age Grid**: See every week you've lived visualized in a life-expectancy grid.
+- 📊 **Life Stats**: Calculate your approximate:
+  - Time spent sleeping, working, using the internet, etc.
+  - Number of heartbeats, breaths, steps, etc.
+- 💡 **Interesting Facts**: Get fun, personalized life facts based on your current age.
+- 🌙 **Dark Mode**: Toggle between light and dark themes with persistent preferences.
+- 📸 **Download & Share**: Export your life grid and stats as an image to save or share.
+- 🔁 **Live Updates**: Stats refresh in real-time as your life ticks forward.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Built With
 
-### `npm test`
+- **React** (Functional Components + Hooks)
+- **TypeScript**
+- **html2canvas** for capturing PNG exports
+- **CSS Modules** for scoped styles
+- **LocalStorage** for theme persistence
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📦 Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone the repository and install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/yourusername/weeks-of-life.git
+cd weeks-of-life
+npm install
+````
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run the development server:
 
-### `npm run eject`
+```bash
+npm start
+```
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🌈 Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Enter Your Birthdate**.
+2. Watch the app render your life in weeks.
+3. Explore interesting facts and stats.
+4. Use the "Download as Image" button to save your life snapshot.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🙌 Inspiration
 
-## Learn More
+Inspired by Tim Urban's [Wait But Why](https://waitbutwhy.com/2014/05/life-weeks.html) post, this tool is a gentle reminder of how precious and limited our time is.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔒 License
 
-### Code Splitting
+MIT License. Use it, remix it, and make something meaningful!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📮 Feedback
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Pull requests, feature suggestions, and contributions are always welcome. Reach out or fork and make it your own!
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🧠 Try It Live
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> Coming soon: [https://weeks-of-life.vercel.app](https://weeks-of-life.vercel.app)
