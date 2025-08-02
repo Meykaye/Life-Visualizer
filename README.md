@@ -1,4 +1,4 @@
-# 📅 Weeks of Life
+# 📅 Life Visualizer
 
 Visualize your entire life — one week at a time. This interactive React app helps you reflect on time, understand your journey, and discover surprising facts about how you've spent your life so far.
 
