@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import WeeksOfLife from "./components/WeeksOfLife"
+import Life from "./components/Life"
 
 function App() {
-  return <WeeksOfLife />;
+  return <Life />;
 }
 
 export default App;
