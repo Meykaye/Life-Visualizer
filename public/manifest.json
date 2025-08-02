@@ -1,25 +1,27 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Life Visualizer",
+  "name": "Life Visualizer - See Your Life in Weeks",
+  "description": "Visualize your entire life in weeks and discover fascinating stats about your time on Earth",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "heart.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "heart.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "heart.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#4f46e5",
+  "background_color": "#1f2937",
+  "categories": ["productivity", "lifestyle", "utilities"]
 }

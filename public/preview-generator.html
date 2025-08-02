@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Preview Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 1000px;
+            padding: 40px;
+        }
+        
+        .title {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(52, 1fr);
+            gap: 2px;
+            width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .week {
+            width: 8px;
+            height: 8px;
+            border-radius: 1px;
+        }
+        
+        .week.past {
+            background-color: #60a5fa;
+        }
+        
+        .week.current {
+            background-color: #fbbf24;
+        }
+        
+        .week.future {
+            background-color: rgba(255,255,255,0.3);
+        }
+        
+        .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+        
+        .emoji {
+            font-size: 32px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Life Visualizer</h1>
+        <p class="subtitle">See Your Life in Weeks</p>
+        
+        <div class="week-grid">
+            <!-- Generate 1560 weeks (30 years) for preview -->
+            <script>
+                const totalWeeks = 52 * 30; // 30 years for preview
+                const livedWeeks = Math.floor(totalWeeks * 0.4); // 40% lived
+                
+                for (let i = 0; i < totalWeeks; i++) {
+                    const week = document.createElement('div');
+                    week.className = 'week';
+                    
+                    if (i < livedWeeks) {
+                        week.className += ' past';
+                    } else if (i === livedWeeks) {
+                        week.className += ' current';
+                    } else {
+                        week.className += ' future';
+                    }
+                    
+                    document.querySelector('.week-grid').appendChild(week);
+                }
+            </script>
+        </div>
+        
+        <p class="tagline">
+            <span class="emoji">⏳</span>
+            Visualize • Reflect • Inspire
+            <span class="emoji">✨</span>
+        </p>
+    </div>
+</body>
+</html>
