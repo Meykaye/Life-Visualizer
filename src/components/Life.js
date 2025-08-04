@@ -248,19 +248,14 @@ export default function WeeksOfLife() {
       // Wait a bit for rendering
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      // Determine canvas dimensions based on device
-      const isMobile = window.innerWidth < 768;
-      const canvasWidth = isMobile ? 800 : 1200;
-      const canvasHeight = isMobile ? 1000 : 800;
-
       // Generate the image
       const canvas = await html2canvas(shareLayout, {
         backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
         scale: 2, // Higher quality
         useCORS: true,
         allowTaint: true,
-        width: canvasWidth,
-        height: canvasHeight,
+        width: 1200,
+        height: 800,
       });
 
       // Remove the temporary element
@@ -287,17 +282,13 @@ export default function WeeksOfLife() {
   // Create optimized share layout
   const createShareLayout = () => {
     const container = document.createElement('div');
-    const isMobile = window.innerWidth < 768;
-    const containerWidth = isMobile ? 800 : 1200;
-    const containerHeight = isMobile ? 1000 : 800;
-    
     container.style.cssText = `
       position: fixed;
       top: -10000px;
       left: -10000px;
-      width: ${containerWidth}px;
-      height: ${containerHeight}px;
-      padding: ${isMobile ? '20px 20px 40px 20px' : '30px 30px 50px 30px'};
+      width: 1200px;
+      height: 800px;
+      padding: 30px 30px 50px 30px;
       background: ${isDarkMode ? 'linear-gradient(135deg, #1f2937 0%, #111827 100%)' : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'};
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
       color: ${isDarkMode ? '#ffffff' : '#1f2937'};
@@ -309,50 +300,47 @@ export default function WeeksOfLife() {
     const header = document.createElement('div');
     header.style.cssText = `
       text-align: center;
-      margin-bottom: ${isMobile ? '15px' : '20px'};
+      margin-bottom: 20px;
     `;
     header.innerHTML = `
-      <h1 style="font-size: ${isMobile ? '24px' : '28px'}; font-weight: bold; margin: 0 0 6px 0; color: ${isDarkMode ? '#ffffff' : '#1f2937'};">Life Visualizer</h1>
-      <p style="font-size: ${isMobile ? '12px' : '14px'}; margin: 0; color: ${isDarkMode ? '#d1d5db' : '#6b7280'};">${stats.age} years old • ${stats.percentageLived}% lived • ${getFormattedNumber(stats.weeksRemaining)} weeks remaining</p>
+      <h1 style="font-size: 28px; font-weight: bold; margin: 0 0 6px 0; color: ${isDarkMode ? '#ffffff' : '#1f2937'};">Life Visualizer</h1>
+      <p style="font-size: 14px; margin: 0; color: ${isDarkMode ? '#d1d5db' : '#6b7280'};">${stats.age} years old • ${stats.percentageLived}% lived • ${getFormattedNumber(stats.weeksRemaining)} weeks remaining</p>
     `;
 
-    // Main content - responsive layout
+    // Main content - single row layout
     const mainContent = document.createElement('div');
     mainContent.style.cssText = `
       display: flex;
-      flex-direction: ${isMobile ? 'column' : 'row'};
-      gap: ${isMobile ? '15px' : '20px'};
-      height: calc(100% - ${isMobile ? '70px' : '90px'});
+      gap: 20px;
+      height: calc(100% - 90px);
       align-items: stretch;
     `;
 
-    // Left side - Week grid
+    // Left side - Week grid (take up less space)
     const leftSide = document.createElement('div');
     leftSide.style.cssText = `
-      flex: ${isMobile ? '0 0 auto' : '0 0 350px'};
+      flex: 0 0 350px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
     `;
 
-    // Week grid container - responsive sizing
+    // Week grid container - much more compact
     const weekGridContainer = document.createElement('div');
     weekGridContainer.style.cssText = `
       background: ${isDarkMode ? 'rgba(31, 41, 55, 0.6)' : 'rgba(255, 255, 255, 0.9)'};
       border-radius: 12px;
-      padding: ${isMobile ? '12px' : '16px'};
+      padding: 16px;
       border: 1px solid ${isDarkMode ? '#374151' : '#e5e7eb'};
       box-shadow: 0 8px 20px ${isDarkMode ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'};
-      ${isMobile ? 'height: auto;' : 'height: 100%;'}
+      height: 100%;
       display: flex;
       flex-direction: column;
     `;
 
-    // Create responsive week grid
+    // Create more compact week grid
     const weeksPerRow = 52;
-    const totalRows = Math.min(Math.ceil(stats.totalWeeks / weeksPerRow), 90);
-    const cellSize = isMobile ? '2.5px' : '3.5px';
-    const cellMargin = isMobile ? '0.3px' : '0.5px';
+    const totalRows = Math.min(Math.ceil(stats.totalWeeks / weeksPerRow), 90); // Limit rows to fit
     let weekGridHTML = '';
     
     for (let row = 0; row < totalRows; row++) {
@@ -373,25 +361,25 @@ export default function WeeksOfLife() {
           bgColor = isDarkMode ? '#4b5563' : '#e5e7eb';
         }
         
-        weekGridHTML += `<div style="width: ${cellSize}; height: ${cellSize}; margin: ${cellMargin}; border-radius: 0.5px; background-color: ${bgColor};"></div>`;
+        weekGridHTML += `<div style="width: 3.5px; height: 3.5px; margin: 0.5px; border-radius: 0.5px; background-color: ${bgColor};"></div>`;
       }
       weekGridHTML += '</div>';
     }
 
     weekGridContainer.innerHTML = `
-      <h3 style="font-size: ${isMobile ? '14px' : '16px'}; font-weight: bold; margin: 0 0 ${isMobile ? '8px' : '12px'} 0; text-align: center; color: ${isDarkMode ? '#ffffff' : '#1f2937'};">Life Visualization</h3>
-      <div style="margin-bottom: ${isMobile ? '8px' : '12px'}; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">${weekGridHTML}</div>
-      <div style="display: flex; justify-content: center; gap: ${isMobile ? '8px' : '12px'}; font-size: ${isMobile ? '8px' : '10px'};">
+      <h3 style="font-size: 16px; font-weight: bold; margin: 0 0 12px 0; text-align: center; color: ${isDarkMode ? '#ffffff' : '#1f2937'};">Life Visualization</h3>
+      <div style="margin-bottom: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">${weekGridHTML}</div>
+      <div style="display: flex; justify-content: center; gap: 12px; font-size: 10px;">
         <div style="display: flex; align-items: center;">
-          <div style="width: 6px; height: 6px; background-color: ${isDarkMode ? '#6366f1' : '#4f46e5'}; border-radius: 1px; margin-right: ${isMobile ? '3px' : '4px'};"></div>
+          <div style="width: 8px; height: 8px; background-color: ${isDarkMode ? '#6366f1' : '#4f46e5'}; border-radius: 1px; margin-right: 4px;"></div>
           <span style="color: ${isDarkMode ? '#d1d5db' : '#6b7280'};">Past</span>
         </div>
         <div style="display: flex; align-items: center;">
-          <div style="width: 6px; height: 6px; background-color: #fbbf24; border-radius: 1px; margin-right: ${isMobile ? '3px' : '4px'};"></div>
+          <div style="width: 8px; height: 8px; background-color: #fbbf24; border-radius: 1px; margin-right: 4px;"></div>
           <span style="color: ${isDarkMode ? '#d1d5db' : '#6b7280'};">Now</span>
         </div>
         <div style="display: flex; align-items: center;">
-          <div style="width: 6px; height: 6px; background-color: ${isDarkMode ? '#4b5563' : '#e5e7eb'}; border-radius: 1px; margin-right: ${isMobile ? '3px' : '4px'};"></div>
+          <div style="width: 8px; height: 8px; background-color: ${isDarkMode ? '#4b5563' : '#e5e7eb'}; border-radius: 1px; margin-right: 4px;"></div>
           <span style="color: ${isDarkMode ? '#d1d5db' : '#6b7280'};">Future</span>
         </div>
       </div>
@@ -399,48 +387,46 @@ export default function WeeksOfLife() {
 
     leftSide.appendChild(weekGridContainer);
 
-    // Right side - Stats grid (responsive)
+    // Right side - Comprehensive stats in a 4x4 grid
     const rightSide = document.createElement('div');
-    const gridCols = isMobile ? 3 : 4;
-    const gridRows = isMobile ? 6 : 4;
     rightSide.style.cssText = `
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(${gridCols}, 1fr);
-      grid-template-rows: repeat(${gridRows}, 1fr);
-      gap: ${isMobile ? '6px' : '8px'};
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 8px;
       min-height: 0;
     `;
 
-    // Comprehensive stats - adjusted for mobile
+    // Comprehensive stats covering all major categories
     const keyStats = [
       { icon: '⏳', title: 'Days Lived', value: getFormattedNumber(stats.daysLived), unit: '' },
       { icon: '💓', title: 'Heartbeats', value: (stats.heartbeats / 1000000).toFixed(0) + 'M', unit: '' },
       { icon: '🫁', title: 'Breaths', value: (stats.breaths / 1000000).toFixed(0) + 'M', unit: '' },
       { icon: '👁️', title: 'Blinks', value: (stats.blinks / 1000000).toFixed(0) + 'M', unit: '' },
+      
       { icon: '🌍', title: 'Earth Orbits', value: stats.earthOrbits, unit: '' },
       { icon: '🌙', title: 'Full Moons', value: stats.fullMoons, unit: '' },
       { icon: '🗓️', title: 'Seasons', value: stats.seasons, unit: '' },
       { icon: '😴', title: 'Sleep Years', value: Math.round(stats.hoursSlept/24/365), unit: '' },
+      
       { icon: '👥', title: 'Words Spoken', value: (stats.averageWords / 1000000).toFixed(0) + 'M', unit: '' },
       { icon: '🚶', title: 'Steps Taken', value: (stats.averageSteps / 1000000).toFixed(0) + 'M', unit: '' },
       { icon: '🍽️', title: 'Meals Eaten', value: getFormattedNumber(stats.averageMeals), unit: '' },
       { icon: '😊', title: 'Times Smiled', value: getFormattedNumber(stats.averageSmiles), unit: '' },
+      
       { icon: '📚', title: 'Books Possible', value: getFormattedNumber(stats.booksCouldRead), unit: '' },
       { icon: '🎓', title: 'Degrees Possible', value: stats.degreeEquivalent, unit: '' },
       { icon: '🌐', title: 'Internet Hours', value: getFormattedNumber(stats.internetHours), unit: '' },
       { icon: '✨', title: 'Weeks Left', value: getFormattedNumber(stats.weeksRemaining), unit: '' }
     ];
 
-    // Take first 12 or 16 stats based on layout
-    const statsToShow = keyStats.slice(0, gridCols * gridRows);
-
-    statsToShow.forEach(stat => {
+    keyStats.forEach(stat => {
       const statCard = document.createElement('div');
       statCard.style.cssText = `
         background: ${isDarkMode ? 'rgba(31, 41, 55, 0.6)' : 'rgba(255, 255, 255, 0.9)'};
         border-radius: 6px;
-        padding: ${isMobile ? '6px' : '8px'};
+        padding: 8px;
         text-align: center;
         border: 1px solid ${isDarkMode ? '#374151' : '#e5e7eb'};
         box-shadow: 0 2px 4px ${isDarkMode ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'};
@@ -450,10 +436,10 @@ export default function WeeksOfLife() {
         min-height: 0;
       `;
       statCard.innerHTML = `
-        <div style="font-size: ${isMobile ? '14px' : '18px'}; margin-bottom: ${isMobile ? '2px' : '4px'};">${stat.icon}</div>
-        <div style="font-size: ${isMobile ? '11px' : '14px'}; font-weight: bold; margin-bottom: 2px; color: ${isDarkMode ? '#ffffff' : '#1f2937'}; line-height: 1.1;">${stat.value}</div>
-        ${stat.unit ? `<div style="font-size: ${isMobile ? '7px' : '9px'}; color: ${isDarkMode ? '#9ca3af' : '#6b7280'}; margin-bottom: 2px;">${stat.unit}</div>` : ''}
-        <div style="font-size: ${isMobile ? '7px' : '9px'}; color: ${isDarkMode ? '#d1d5db' : '#4b5563'}; line-height: 1.0;">${stat.title}</div>
+        <div style="font-size: 18px; margin-bottom: 4px;">${stat.icon}</div>
+        <div style="font-size: 14px; font-weight: bold; margin-bottom: 2px; color: ${isDarkMode ? '#ffffff' : '#1f2937'}; line-height: 1.1;">${stat.value}</div>
+        ${stat.unit ? `<div style="font-size: 9px; color: ${isDarkMode ? '#9ca3af' : '#6b7280'}; margin-bottom: 2px;">${stat.unit}</div>` : ''}
+        <div style="font-size: 9px; color: ${isDarkMode ? '#d1d5db' : '#4b5563'}; line-height: 1.0;">${stat.title}</div>
       `;
       rightSide.appendChild(statCard);
     });
@@ -466,15 +452,15 @@ export default function WeeksOfLife() {
     const footer = document.createElement('div');
     footer.style.cssText = `
       position: absolute;
-      bottom: ${isMobile ? '8px' : '10px'};
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
-      font-size: ${isMobile ? '9px' : '11px'};
+      font-size: 11px;
       color: ${isDarkMode ? '#9ca3af' : '#6b7280'};
     `;
     footer.innerHTML = `
-      <div style="display: flex; align-items: center; justify-content: center; gap: ${isMobile ? '6px' : '8px'};">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
         <span>⭐ github.com/Meykaye/Life-Visualizer</span>
         <span>•</span>
         <span>Built with ❤️ by @Meykaye</span>
